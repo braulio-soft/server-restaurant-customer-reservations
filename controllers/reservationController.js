@@ -37,7 +37,7 @@ const deleteReservation = async (req, res) => {
         if (!customerValidate) return res.status(404).json({ message: "Not found costumer" })
 
         await reservationModel.deleteReservation(id);
-        res.status(204);
+        res.status(204).send();
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
