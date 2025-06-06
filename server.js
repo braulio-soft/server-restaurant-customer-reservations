@@ -4,9 +4,13 @@ const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 
-const costumerRoutes = require('./routes/customerRouters');
+const userRoutes = require('./routes/userRoutes');
 const restaurantRoutes = require('./routes/restaurantRoutes');
 const reservationRoutes = require('./routes/reservationController')
+const productRoutes = require('./routes/productRoutes')
+const itemRoutes = require('./routes/itemRoutes')
+const planRoutes = require('./routes/planRoutes')
+const paymentRoutes = require('./routes/paymentRoutes')
 
 dotenv.config();
 
@@ -15,7 +19,11 @@ const app = express();
 
 app.use(express.json())
 
-app.use('/api/customers', costumerRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/items', itemRoutes);
+app.use('/api/payments', paymentRoutes);
+app.use('/api/plans', planRoutes)
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/reservations', reservationRoutes);
 

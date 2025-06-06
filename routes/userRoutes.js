@@ -1,41 +1,41 @@
 const express = require('express');
 const router = express.Router();
-const customerController = require('../controllers/customerController');
-const reservationController = require('../controllers/reservationController');
+const userController = require('../controllers/userController');
+//const reservationController = require('../controllers/reservationController');
 /**
  * @swagger
- * /customers:
+ * /users:
  *   get:
- *     summary: Get all costumers
+ *     summary: Get all users
  *     responses:
  *       200:
- *         description: List of Costumers
+ *         description: List of Users
  */
-router.get('/', customerController.getCustomers);
+router.get('/', userController.getUsers);
 /**
  * @swagger
- * /customers/{id}:
+ * /users/{id}:
  *   get:
- *     summary: Get a customer by ID
+ *     summary: Get a user by ID
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Customer ID
+ *         description: User ID
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Customer found
+ *         description: User found
  *       404:
- *         description: Customer not found
+ *         description: User not found
  */
-router.get('/:id', customerController.getCustomerById);
+router.get('/:id', userController.getUserById);
 /**
  * @swagger
- * /customers:
+ * /users:
  *   post:
- *     summary: Create a new customer
+ *     summary: Create a new user
  *     requestBody:
  *       required: true
  *       content:
@@ -47,14 +47,14 @@ router.get('/:id', customerController.getCustomerById);
  *                 type: string
  *     responses:
  *       201:
- *         description: Customer created
+ *         description: User created
  */
-router.post('/', customerController.createCustomer);
+router.post('/', userController.createUser);
 /**
  * @swagger
- * /customers/{id}/reservations:
+ * /users/{id}/reservations:
  *   post:
- *     summary: Create a reservation for a customer
+ *     summary: Create a reservation for a user
  *     parameters:
  *       - in: path
  *         name: id
@@ -76,15 +76,16 @@ router.post('/', customerController.createCustomer);
  *       201:
  *         description: Reservation created
  */
-router.post('/:id/reservations', reservationController.createReservation);
+
+//router.post('/:id/reservations', reservationController.createReservation);
 /**
  * @swagger
- * /customers/{customerId}/reservations/{id}:
+ * /users/{userId}/reservations/{id}:
  *   delete:
- *     summary: Delete a reservation for a customer
+ *     summary: Delete a reservation for a user
  *     parameters:
  *       - in: path
- *         name: customerId
+ *         name: userId
  *         required: true
  *         schema:
  *           type: string
@@ -97,8 +98,8 @@ router.post('/:id/reservations', reservationController.createReservation);
  *       204:
  *         description: Reservation deleted
  *       404:
- *         description: Customer or reservation not found
+ *         description: User or reservation not found
  */
-router.delete('/:customerId/reservations/:id', reservationController.deleteReservation);
+//router.delete('/:userId/reservations/:id', reservationController.deleteReservation);
 
 module.exports = router

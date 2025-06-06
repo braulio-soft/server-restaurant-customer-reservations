@@ -4,9 +4,9 @@ const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: 'API de Server Braulio',
+            title: 'API de Server Ecommerce ',
             version: '1.0.0',
-            description: 'Documentation for API BRAULIO RESTAURANTS-CLIENTS',
+            description: 'Documentation for Ecommerce App Streaming ',
         },
         servers: [
             {

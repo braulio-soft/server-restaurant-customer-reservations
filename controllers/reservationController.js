@@ -1,5 +1,5 @@
 const reservationModel = require('../models/reservationModel')
-const customerService = require('../models/customerModel');
+const userService = require('../models/userModel');
 const restaurantService = require('../models/restaurantModel');
 
 const getReservations = async (req, res) => {
@@ -15,8 +15,8 @@ const createReservation = async (req, res) => {
     try {
         const { partyCount, restaurantId } = req.body;
 
-        const customerValidate = await customerService.getCostumerById(req.params.id);
-        if (!customerValidate) return res.status(404).json({ message: "Not found costumer" })
+        const userValidate = await userService.getUserById(req.params.id);
+        if (!userValidate) return res.status(404).json({ message: "Not found costumer" })
 
         const restaurantValidate = await restaurantService.getRestaurantById(restaurantId);
         if (!restaurantValidate) return res.status(404).json({ message: "Not found restaurant" })
@@ -32,9 +32,9 @@ const createReservation = async (req, res) => {
 
 const deleteReservation = async (req, res) => {
     try {
-        const { customerId, id } = req.params;
-        const customerValidate = await customerService.getCostumerById(customerId);
-        if (!customerValidate) return res.status(404).json({ message: "Not found costumer" })
+        const { userId, id } = req.params;
+        const userValidate = await userService.getUserById(userId);
+        if (!userValidate) return res.status(404).json({ message: "Not found costumer" })
 
         await reservationModel.deleteReservation(id);
         res.status(204).send();
