@@ -7,6 +7,8 @@ const userController = require('../controllers/userController');
  * /users:
  *   get:
  *     summary: Get all users
+ *     tags:
+ *        - Users
  *     responses:
  *       200:
  *         description: List of Users
@@ -17,6 +19,8 @@ router.get('/', userController.getUsers);
  * /users/{id}:
  *   get:
  *     summary: Get a user by ID
+ *     tags:
+ *       - Users
  *     parameters:
  *       - in: path
  *         name: id
@@ -36,20 +40,50 @@ router.get('/:id', userController.getUserById);
  * /users:
  *   post:
  *     summary: Create a new user
+ *     tags:
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - first_name
+ *               - last_name
+ *               - email
+ *               - password
+ *               - phone_number
+ *               - age
  *             properties:
- *               name:
+ *               first_name:
  *                 type: string
+ *                 example: John
+ *               last_name:
+ *                 type: string
+ *                 example: Doe
+ *               email:
+ *                 type: string
+ *                 format: email
+ *                 example: john.doe@example.com
+ *               password:
+ *                 type: string
+ *                 format: password
+ *                 example: secret123
+ *               phone_number:
+ *                 type: string
+ *                 example: "+1234567890"
+ *               age:
+ *                 type: integer
+ *                 example: 30
  *     responses:
  *       201:
- *         description: User created
+ *         description: User created successfully
+ *       400:
+ *         description: Invalid input
  */
 router.post('/', userController.createUser);
+
 /**
  * @swagger
  * /users/{id}/reservations:

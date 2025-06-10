@@ -11,8 +11,14 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
-        const { name } = req.body;
-        const user = await userModel.createUser(name);
+        const {
+            first_name,
+            last_name,
+            email,
+            password,
+            phone_number,
+            age } = req.body;
+        const user = await userModel.createUser(first_name, last_name, email, password, phone_number, age);
         res.status(201).json(user);
     } catch (error) {
         res.status(400).json({ message: error.message })
